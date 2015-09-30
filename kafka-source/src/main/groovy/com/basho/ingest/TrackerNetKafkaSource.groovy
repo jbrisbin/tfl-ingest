@@ -35,9 +35,12 @@ class TrackerNetKafkaSource {
     def trackerNetPredictionSummary(MessageChannel stationStatusMessages) {
         Streams.period(0, 30, TimeUnit.SECONDS).
                 flatMap {
-                    NetStreams.httpClient().get(TFL_URL).
-                            flatMap(new BufferAccumulator()).
-                            flatMap { b -> XmlStreams.from(b) { xml -> xml.S } }
+                    NetStreams.httpClient().
+                            get(TFL_URL).
+                            flatMap { XmlSlurper.parse(it) }
+                }.
+                flatMap {
+                    Streams.from(it.S)
                 }.
                 consume { station ->
                     def statusMsg = [

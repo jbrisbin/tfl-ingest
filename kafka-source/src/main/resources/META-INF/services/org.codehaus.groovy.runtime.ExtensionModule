@@ -1,0 +1,3 @@
+moduleName=ingest-groovy-module
+moduleVersion=1.0
+staticExtensionClasses=com.basho.ingest.XmlSlurperStaticExtensions

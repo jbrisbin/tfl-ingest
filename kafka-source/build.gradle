@@ -68,6 +68,7 @@ configurations.all {
 }
 
 repositories {
+    mavenLocal()
     jcenter()
     maven { url 'http://repo.spring.io/milestone' }
 }
@@ -154,4 +155,3 @@ task wrapper(type: Wrapper, description: "Create a Gradle self-download wrapper"
     group = 'Project Setup'
     gradleVersion = "$gradleVersion"
 }
-
