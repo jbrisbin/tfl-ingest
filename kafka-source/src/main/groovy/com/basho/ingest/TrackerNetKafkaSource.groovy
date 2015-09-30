@@ -1,15 +1,13 @@
 package com.basho.ingest
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.messaging.Source
 import org.springframework.context.annotation.Bean
-import org.springframework.integration.channel.DirectChannel
-import org.springframework.integration.dsl.IntegrationFlows
-import org.springframework.integration.json.ObjectToJsonTransformer
 import org.springframework.integration.support.MessageBuilder
-import org.springframework.messaging.MessageChannel
+import org.springframework.messaging.MessageHeaders
 import reactor.Environment
 import reactor.io.net.NetStreams
 import reactor.rx.Streams
@@ -26,13 +24,11 @@ class TrackerNetKafkaSource {
 
     static def TFL_URL = "http://cloud.tfl.gov.uk/TrackerNet/PredictionSummary/C"
 
-    @Bean
-    def stationStatusMessages() {
-        new DirectChannel()
-    }
+    @Autowired
+    Source out
 
     @Bean
-    def trackerNetPredictionSummary(MessageChannel stationStatusMessages) {
+    def trackerNetPredictionSummary() {
         Streams.period(0, 30, TimeUnit.SECONDS).
                 flatMap {
                     NetStreams.httpClient().
@@ -54,16 +50,12 @@ class TrackerNetKafkaSource {
                                  }]
                             }
                     ]
-                    stationStatusMessages.send(MessageBuilder.withPayload(statusMsg).build())
+                    out.output().send(
+                            MessageBuilder.withPayload(statusMsg.toJSON()).
+                                    setHeader(MessageHeaders.CONTENT_TYPE, "application/json").
+                                    build()
+                    )
                 }
-    }
-
-    @Bean
-    def kafkaSink(MessageChannel stationStatusMessages, Source out) {
-        IntegrationFlows.from(stationStatusMessages)
-                .transform(new ObjectToJsonTransformer())
-                .channel(out.output())
-                .get()
     }
 
     public static void main(String[] args) {

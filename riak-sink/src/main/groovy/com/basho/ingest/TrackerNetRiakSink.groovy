@@ -7,12 +7,12 @@ import com.basho.riak.client.core.query.Namespace
 import com.basho.riak.client.core.query.RiakObject
 import com.basho.riak.client.core.util.BinaryValue
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.messaging.Sink
 import org.springframework.context.annotation.Bean
-import org.springframework.messaging.MessageHandler
 import org.springframework.messaging.MessageHeaders
 import reactor.core.support.UUIDUtils
 
@@ -23,9 +23,12 @@ class TrackerNetRiakSink {
     static def LOG = LoggerFactory.getLogger(TrackerNetRiakSink)
     static def FROM_KAFKA = new Namespace("fromKafka")
 
+    @Autowired
+    RiakCluster cluster
+
     @Bean
-    def riakSink(RiakCluster cluster, Sink from) {
-        from.input().subscribe { msg ->
+    def riakSink(Sink from) {
+        from.input().subscribe({ msg ->
             LOG.info("Received message: $msg")
 
             def loc = new Location(FROM_KAFKA, "${UUIDUtils.create()}")
@@ -37,7 +40,7 @@ class TrackerNetRiakSink {
 
             def op = new StoreOperation.Builder(loc).withContent(obj).build()
             cluster.execute(op)
-        } as MessageHandler
+        })
     }
 
     public static void main(String[] args) {

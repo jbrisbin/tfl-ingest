@@ -1,3 +1,4 @@
 moduleName=ingest-groovy-module
 moduleVersion=1.0
+extensionClasses=com.basho.ingest.MapExtensions
 staticExtensionClasses=com.basho.ingest.XmlSlurperStaticExtensions
