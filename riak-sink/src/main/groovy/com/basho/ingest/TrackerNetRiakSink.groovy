@@ -25,9 +25,11 @@ class TrackerNetRiakSink {
 
     @Autowired
     RiakCluster cluster
+    @Autowired
+    Sink from
 
     @Bean
-    def riakSink(Sink from) {
+    def riakSink() {
         from.input().subscribe({ msg ->
             LOG.info("Received message: $msg")
 
