@@ -4,7 +4,6 @@ import groovy.transform.CompileStatic
 import groovy.util.slurpersupport.GPathResult
 import org.reactivestreams.Publisher
 import reactor.core.reactivestreams.SubscriberWithContext
-import reactor.fn.BiConsumer
 import reactor.io.buffer.Buffer
 import reactor.rx.Stream
 import reactor.rx.Streams
@@ -16,17 +15,20 @@ import reactor.rx.Streams
 class XmlSlurperStaticExtensions {
 
     static <P extends Publisher<Buffer>> Stream<GPathResult> parse(XmlSlurper selfType, P p) {
-        def x = new XmlSlurper()
-        def b = new Buffer()
-        Streams.createWith({ Long req, SubscriberWithContext<GPathResult, Void> sub ->
-            def onComplete = {
-                b.flip()
-                sub.onNext(x.parse(new ByteArrayInputStream(b.asBytes())))
-            }
-            Streams.wrap(p).
-                    observeComplete(onComplete).
-                    consume { Buffer buf -> b.append(buf) }
-        } as BiConsumer<Long, SubscriberWithContext<GPathResult, Void>>)
+        Streams.createWith(
+                { Long req, SubscriberWithContext<GPathResult, Buffer> sub ->
+                    Streams.wrap(p).
+                            observeComplete {
+                                sub.context().flip()
+                                sub.onNext(new XmlSlurper().parse(new ByteArrayInputStream(sub.context().asBytes())))
+                                sub.onComplete()
+                            }.
+                            consume { Buffer buf -> sub.context().append(buf) }
+                },
+                {
+                    new Buffer()
+                }
+        )
     }
 
 }
