@@ -1,7 +1,6 @@
 package com.basho.ingest;
 
-import com.basho.riak.client.core.RiakCluster;
-import com.basho.riak.client.core.RiakNode;
+import com.basho.riak.client.api.RiakClient;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Component;
@@ -13,23 +12,23 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Created by jbrisbin on 9/28/15.
  */
 @Component
-public class RiakClusterFactoryBean implements FactoryBean<RiakCluster>, Lifecycle {
+public class RiakClientFactoryBean implements FactoryBean<RiakClient>, Lifecycle {
 
-    private final RiakCluster cluster;
+    private final RiakClient client;
     private final AtomicBoolean started = new AtomicBoolean(false);
 
-    public RiakClusterFactoryBean() throws UnknownHostException {
-        this.cluster = RiakCluster.builder(new RiakNode.Builder().build()).build();
+    public RiakClientFactoryBean() throws UnknownHostException {
+        this.client = RiakClient.newClient();
     }
 
     @Override
-    public RiakCluster getObject() throws Exception {
-        return cluster;
+    public RiakClient getObject() throws Exception {
+        return client;
     }
 
     @Override
     public Class<?> getObjectType() {
-        return RiakCluster.class;
+        return RiakClient.class;
     }
 
     @Override
@@ -39,15 +38,13 @@ public class RiakClusterFactoryBean implements FactoryBean<RiakCluster>, Lifecyc
 
     @Override
     public void start() {
-        if (started.compareAndSet(false, true)) {
-            this.cluster.start();
-        }
+        started.compareAndSet(false, true);
     }
 
     @Override
     public void stop() {
         if (started.compareAndSet(true, false)) {
-            this.cluster.shutdown();
+            this.client.shutdown();
         }
     }
 

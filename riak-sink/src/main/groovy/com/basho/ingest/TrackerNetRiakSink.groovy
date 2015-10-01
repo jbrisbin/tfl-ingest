@@ -45,11 +45,8 @@ class TrackerNetRiakSink {
 
     @Autowired
     Sink from
-
-    @Bean
-    RiakClient riakClient() {
-        RiakClient.newClient()
-    }
+    @Autowired
+    RiakClient riakClient
 
     @Bean
     Namespace fromKafkaNamespace() {
@@ -66,7 +63,7 @@ class TrackerNetRiakSink {
 
             LOG.info("Storing $obj at $loc")
 
-            riakClient().execute(new StoreValue.Builder(obj).withLocation(loc).build())
+            riakClient.execute(new StoreValue.Builder(obj).withLocation(loc).build())
         })
     }
 
