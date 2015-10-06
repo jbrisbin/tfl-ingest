@@ -9,3 +9,9 @@ To run the app, just do:
 You should see messages flowing if consuming from Kafka using the CLI:
 
     > kafka-console-consumer.sh --zookeeper 127.0.0.1:2181 --topic mars-ingest
+
+The topic name is set in the `application.properties` file as well. Spring Cloud expects it to be set thus:
+
+    spring.cloud.stream.bindings.output=mars-ingest
+
+Not obvious, I know. :)
