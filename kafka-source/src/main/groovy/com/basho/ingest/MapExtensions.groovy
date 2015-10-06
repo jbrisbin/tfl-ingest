@@ -15,6 +15,7 @@ class MapExtensions {
 
     static ObjectMapper mapper = new ObjectMapper()
 
+    // Helper method to write out a Map as a String of JSON
     static String toJSON(Map selfType) {
         mapper.writeValueAsString(selfType)
     }
