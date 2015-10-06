@@ -30,6 +30,9 @@ ext {
     // Riak
     riakClientVersion = '2.0.2'
 
+    // MQTT
+    pahoVersion = '1.0.2'
+
     // Libraries
     reactorVersion = '2.0.5.RELEASE'
 
@@ -57,7 +60,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'application'
-apply plugin: 'optional-base'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'spring-boot'
 
@@ -68,7 +70,8 @@ configurations.all {
 
 repositories {
     jcenter()
-    maven { url 'http://repo.spring.io/milestone' }
+    maven { url 'http://repo.spring.io/snapshot' }
+    maven { url 'https://repo.eclipse.org/content/repositories/paho-releases' }
 }
 
 [compileJava, compileTestJava]*.options*.compilerArgs = [
@@ -124,6 +127,9 @@ dependencies {
     // Spring Cloud
     compile "org.springframework.cloud:spring-cloud-starter-stream-kafka"
 
+    // Paho MQTT
+    compile "org.eclipse.paho:org.eclipse.paho.client.mqttv3:$pahoVersion"
+
     // Groovy
     compile "org.codehaus.groovy:groovy-all:$groovyVersion"
 
@@ -135,7 +141,7 @@ dependencies {
     compile "com.basho.riak:riak-client:$riakClientVersion"
 
     // Jackson
-    optional "com.fasterxml.jackson.core:jackson-databind"
+    compile "com.fasterxml.jackson.core:jackson-databind"
 
     // Testing
     testCompile "org.spockframework:spock-core:$spockVersion",

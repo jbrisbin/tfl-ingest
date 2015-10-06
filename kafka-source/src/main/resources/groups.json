@@ -1,0 +1,336 @@
+{
+  "Groups": {
+    "Group": [
+      {
+        "@GroupName": "All",
+        "@Description": "All current network LAs",
+        "@WebsiteURL": "http://www.erg.kcl.ac.uk/"
+      },
+      {
+        "@GroupName": "AroundLondon",
+        "@Description": "Selection of boroughs around London",
+        "@WebsiteURL": "http://www.londonair.org.uk/"
+      },
+      {
+        "@GroupName": "CambridgeCity",
+        "@Description": "Demo group for tender",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "Cambridgeshire",
+        "@Description": "Demo group for tender",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "Essex",
+        "@Description": "All 14 councils in Essex",
+        "@WebsiteURL": "http://www.essexair.org.uk/"
+      },
+      {
+        "@GroupName": "Hampshire",
+        "@Description": "Various local authorities in Hampshire",
+        "@WebsiteURL": "http://www.hantsair.org.uk/"
+      },
+      {
+        "@GroupName": "Leicester",
+        "@Description": "Leicester Council",
+        "@WebsiteURL": "http://www.leicester.gov.uk/"
+      },
+      {
+        "@GroupName": "London",
+        "@Description": "All currently active boroughs of London",
+        "@WebsiteURL": "http://www.londonair.org.uk/"
+      },
+      {
+        "@GroupName": "Sussex",
+        "@Description": "All 13 councils in Sussex",
+        "@WebsiteURL": "http://www.sussex-air.net/"
+      },
+      {
+        "@GroupName": "adur",
+        "@Description": "Adur",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "almbridget",
+        "@Description": "Elmbridge",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "arun",
+        "@Description": "Arun",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "barkinganddagenham",
+        "@Description": "Barking and Dagenham",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "barnet",
+        "@Description": "Barnet",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "bexley",
+        "@Description": "Bexley",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "brent",
+        "@Description": "Brent",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "brentwood",
+        "@Description": "Brentwood",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "brightonandhove",
+        "@Description": "Brighton and Hove",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "bromley",
+        "@Description": "Bromley",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "camden",
+        "@Description": "Camden",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "castlepoint",
+        "@Description": "Castle Point",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "chichester",
+        "@Description": "Chichester",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "cityoflondon",
+        "@Description": "City of London",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "crawley",
+        "@Description": "Crawley",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "croydon",
+        "@Description": "Croydon",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "dacorum",
+        "@Description": "Dacorum",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "ealing",
+        "@Description": "Ealing",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "eastbourne",
+        "@Description": "Eastbourne",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "enfield",
+        "@Description": "Enfield",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "greenwich",
+        "@Description": "Greenwich",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "hackney",
+        "@Description": "Hackney",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "hammersmithandfulham",
+        "@Description": "Hammersmith and Fulham",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "haringey",
+        "@Description": "Haringey",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "harrow",
+        "@Description": "Harrow",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "hastings",
+        "@Description": "Hastings",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "havering",
+        "@Description": "Havering",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "hillingdon",
+        "@Description": "Hillingdon",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "horsham",
+        "@Description": "Horsham",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "hounslow",
+        "@Description": "Hounslow",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "islington",
+        "@Description": "Islington",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "kensingtonandchelsea",
+        "@Description": "Kensington and Chelsea",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "kingston",
+        "@Description": "Kingston",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "lambeth",
+        "@Description": "Lambeth",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "lewes",
+        "@Description": "Lewes",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "lewisham",
+        "@Description": "Lewisham",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "merton",
+        "@Description": "Merton",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "midsussex",
+        "@Description": "Mid Sussex",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "molevalley",
+        "@Description": "Mole Valley",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "newham",
+        "@Description": "Newham",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "redbridget",
+        "@Description": "Redbridge",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "reigateandbanstead",
+        "@Description": "Reigate and Banstead",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "richmond",
+        "@Description": "Richmond",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "rother",
+        "@Description": "Rother",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "runnymeade",
+        "@Description": "Runnymede",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "sevenoaks",
+        "@Description": "Sevenoaks",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "singlela",
+        "@Description": "sub domain test",
+        "@WebsiteURL": "singlela.andygrieve.com"
+      },
+      {
+        "@GroupName": "southwark",
+        "@Description": "Southwark",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "sutton",
+        "@Description": "Sutton",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "thurrock",
+        "@Description": "Thurrock",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "towerhamlets",
+        "@Description": "Tower Hamlets",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "walthamforest",
+        "@Description": "Waltham Forest",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "wandsworth",
+        "@Description": "Wandsworth",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "wealden",
+        "@Description": "Wealden",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "westminster",
+        "@Description": "Westminster",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "windsorandmaidenhead",
+        "@Description": "Windsor and Maidenhead",
+        "@WebsiteURL": ""
+      },
+      {
+        "@GroupName": "worthing",
+        "@Description": "Worthing",
+        "@WebsiteURL": ""
+      }
+    ]
+  }
+}
