@@ -52,7 +52,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.0.M5',
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE',
                 'io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE'
     }
 }
@@ -68,10 +68,11 @@ configurations.all {
     exclude group: 'org.codehaus.groovy', module: 'groovy'
 }
 
+sourceSets.main.resources.srcDirs = ["src/main/resources", "src/main/data"]
+
 repositories {
     jcenter()
     maven { url 'http://repo.spring.io/snapshot' }
-    maven { url 'https://repo.eclipse.org/content/repositories/paho-releases' }
 }
 
 [compileJava, compileTestJava]*.options*.compilerArgs = [
@@ -126,9 +127,6 @@ dependencies {
 
     // Spring Cloud
     compile "org.springframework.cloud:spring-cloud-starter-stream-kafka"
-
-    // Paho MQTT
-    compile "org.eclipse.paho:org.eclipse.paho.client.mqttv3:$pahoVersion"
 
     // Groovy
     compile "org.codehaus.groovy:groovy-all:$groovyVersion"
