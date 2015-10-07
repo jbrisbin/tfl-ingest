@@ -73,14 +73,12 @@ class LondonAirQualityStreamSource {
                 def siteCode = site['@SiteCode']
                 species().
                         flatMap { speciesCode ->
-                            // Extract species code, which is a unique code for a species of data
-                            //def speciesCode = species['@SpeciesCode']
-
-                            log.info "Loading data for site: ${siteCode}, species: ${speciesCode}"
-
                             // Pull the data for a given site + species + fromDate + toDate
                             def url = "http://api.erg.kcl.ac.uk/AirQuality/Data/SiteSpecies/SiteCode=$siteCode/SpeciesCode=$speciesCode/StartDate=$from/EndDate=$to/Json"
-                            log.info " << $url"
+
+                            log.info "Loading data for site: ${siteCode}, species: ${speciesCode}"
+                            log.info "  << $url"
+
                             Streams.from((List) mapper.readValue(new URL(url).openStream(), Map).RawAQData.Data).
                                     map { data ->
                                         // Add the site code and species code back into the data since it lives
