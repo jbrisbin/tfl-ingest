@@ -34,18 +34,16 @@ class LondonAirQualityStreamSource {
     @Autowired
     ObjectMapper mapper
     // Property to use as the start date for ingestion
-    @Value('${mars.ingest.from?:2015-10-01}')
+    @Value('${mars.ingest.from}')
     String from
     // Property to use as the end date for ingestion
-    @Value('${mars.ingest.to?:2015-11-01}')
+    @Value('${mars.ingest.to}')
     String to
 
     // Parse the contents of the sites.json data only once since we're exposing this as a singleton Bean
     @Bean
     Stream<Map> sites() {
-        def s = (List) mapper.readValue(new URL("http://api.erg.kcl.ac.uk/AirQuality/Information/MonitoringSites/GroupName=All/Json"), Map).Sites.Site
-        println "sites: $s"
-        Streams.from(s)
+        Streams.from((List) mapper.readValue(new URL("http://api.erg.kcl.ac.uk/AirQuality/Information/MonitoringSites/GroupName=All/Json"), Map).Sites.Site)
     }
 
     // Parse the contents of the species.json data only once since we're exposing this as a singleton Bean
