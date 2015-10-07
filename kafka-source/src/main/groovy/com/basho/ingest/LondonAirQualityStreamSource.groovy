@@ -15,6 +15,8 @@ import reactor.core.processor.RingBufferWorkProcessor
 import reactor.rx.Stream
 import reactor.rx.Streams
 
+import java.util.concurrent.CountDownLatch
+
 @SpringBootApplication
 @EnableBinding(Source.class)
 class LondonAirQualityStreamSource {
@@ -25,7 +27,7 @@ class LondonAirQualityStreamSource {
     }
 
     def log = LoggerFactory.getLogger(LondonAirQualityStreamSource)
-    def speciesCodes = ['TMP', 'RHUM', 'SOLR', 'WDIR', 'WSPD', 'CO', 'NO2', 'O3', 'PM10', 'PM25', 'SO2']
+    def exitLatch = new CountDownLatch(1)
 
     // Inject Spring Cloud Stream Kafka Source
     @Autowired
@@ -39,6 +41,9 @@ class LondonAirQualityStreamSource {
     // Property to use as the end date for ingestion
     @Value('${mars.ingest.to}')
     String to
+    // Which species to download
+    @Value('${mars.ingest.species}')
+    String speciesCodes
 
     // Parse the contents of the sites.json data only once since we're exposing this as a singleton Bean
     @Bean
@@ -49,7 +54,7 @@ class LondonAirQualityStreamSource {
     // Parse the contents of the species.json data only once since we're exposing this as a singleton Bean
     @Bean
     Stream<String> species() {
-        Streams.from(speciesCodes)
+        Streams.from(speciesCodes.split(','))
     }
 
     // Create a RingBufferWorkProcessor, which is just a multi-threaded Reactive Streams Processor, to do work
@@ -86,6 +91,7 @@ class LondonAirQualityStreamSource {
                                         data
                                     }
                         }.
+                        observeComplete { exitLatch.countDown() }.
                         consume { data ->
                             // For each data point, send a separate Message to the Spring Cloud Stream Source,
                             // which means send it to Kafka in this implementation
@@ -104,10 +110,8 @@ class LondonAirQualityStreamSource {
         // Everything's ready, go do work
         app.downloadAvailableSpecies()
 
-        // We probably don't actually need to do this but let's stay active until we kill it
-        while (true) {
-            Thread.sleep(5000)
-        }
+        // Stay active until through processing
+        app.exitLatch.await()
     }
 
 }
